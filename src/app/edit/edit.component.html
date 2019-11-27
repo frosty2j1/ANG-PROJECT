@@ -1,37 +1,37 @@
 <mat-card>
-    <form (submit)="onEditMovie(movieForm)" #movieForm="ngForm">
+    <form (submit)="onEditBook(bookForm)" #bookForm="ngForm">
       <mat-form-field>
-          <label> Movie Title</label>
+          <label> Book Title</label>
         <input
           matInput
           type="text"
           name="title"
-          ngModel={{movie.title}}
+          ngModel={{book.title}}
           required
           #title="ngModel">
       </mat-form-field>
       <mat-form-field>
-          <label>Movie Year</label>
+          <label>Book Year</label>
         <textarea
           matInput
           name="year"
-          ngModel={{movie.year}}
+          ngModel={{book.year}}
           required
           #content="ngModel"></textarea>
       </mat-form-field>
       <mat-form-field>
-          <label>Movie Poster</label>
+          <label>Book Poster</label>
         <textarea
           matInput
          rows="4"
           name="poster"
-          ngModel={{movie.poster}}
+          ngModel={{book.poster}}
           required
           #content="ngModel"></textarea>
       </mat-form-field>
       <button
         mat-raised-button
         color="accent"
-        type="submit">Edit Movie</button>
+        type="submit">Edit Book</button>
     </form>
   </mat-card>

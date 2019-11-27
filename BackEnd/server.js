@@ -7,18 +7,18 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const mongoDB = 'mongodb://admin:admin123#@ds241408.mlab.com:41408/dm_lab7'
+const mongoDB = 'mongodb+srv://aidan:therock619@cluster0-eilv4.mongodb.net/test?retryWrites=true&w=majority'
 mongoose.connect(mongoDB, {useNewUrlParser:true});
 
 const Schema = mongoose.Schema;
 
-const movieSchema = new Schema({
+const bookSchema = new Schema({
   title:String,
   year:String,
   poster:String
 });
 
-const MovieModel = mongoose.model('movie',movieSchema);
+const BookModel = mongoose.model('book',bookSchema);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,31 +37,31 @@ app.get('/', (req, res) => {
   res.send('hello world');
 })
 
-app.get('/api/movies', (req,res,next) => {
+app.get('/api/books', (req,res,next) => {
 
   console.log("get request")
-  MovieModel.find((err,data)=>{
-    res.json({movies:data});
+  BookModel.find((err,data)=>{
+    res.json({books:data});
   })
 })
 
-app.delete('/api/movies/:id', (req,res) =>{
+app.delete('/api/books/:id', (req,res) =>{
   console.log(req.params.id);
 
-  MovieModel.deleteOne({_id:req.params.id},(error,data)=>{
+  BookModel.deleteOne({_id:req.params.id},(error,data)=>{
     if(error)
       res.json(error);
-      
+
     res.json(data);
   })
 })
 
-app.get('/api/movies/search/:title/:criteria', (req,res)=>{
+app.get('/api/books/search/:title/:criteria', (req,res)=>{
   console.log(req.params.title);
   console.log(req.params.criteria);
 if(req.params.criteria == 'title')
   {
-  MovieModel.find({ 'title': req.params.title},
+  BookModel.find({ 'title': req.params.title},
 (error,data) =>{
   res.json(data);
 })
@@ -69,14 +69,14 @@ if(req.params.criteria == 'title')
 })
 
 
-app.post('/api/movies', (req,res) =>{
+app.post('/api/books', (req,res) =>{
 console.log('post Sucessfull');
 console.log(req.body)
 console.log(req.body.title);
 console.log(req.body.year);
 console.log(req.body.poster);
 
-MovieModel.create({
+BookModel.create({
   title: req.body.title,
   year: req.body.year,
   poster: req.body.poster
@@ -86,20 +86,20 @@ res.json('data uploaded')
 
 })
 
-app.get('/api/movies/:id',(req,res)=>{
+app.get('/api/books/:id',(req,res)=>{
   console.log(req.params.id);
 
-  MovieModel.findById(req.params.id, (err, data)=>{
+  BookModel.findById(req.params.id, (err, data)=>{
     res.json(data);
   })
 })
 
 
-app.put('/api/movies/:id', (req, res)=>{
+app.put('/api/books/:id', (req, res)=>{
   console.log(req.body);
   console.log("Edit "+req.params.id);
 
-  MovieModel.findByIdAndUpdate(req.params.id,
+  BookModel.findByIdAndUpdate(req.params.id,
     req.body, {new:true}, (error, data)=>{
       res.send(data);
     })

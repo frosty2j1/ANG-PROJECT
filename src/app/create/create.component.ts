@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { MovieServiceService } from '../Services/movie-service.service';
+import { NgForm } from '@angular/forms';
+import { BookServiceService } from '../Services/book-service.service';
 
 
 @Component({
@@ -10,15 +10,14 @@ import { MovieServiceService } from '../Services/movie-service.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private movieService: MovieServiceService) { }
+  constructor(private bookService: BookServiceService) { }
+  myDate: Date;
 
   ngOnInit() {
   }
-  myDate : Date;
-  onAddMovie(form: NgForm) {
-    
-    if(!form.valid)
-    {
+  onAddBook(form: NgForm) {
+
+    if (!form.valid) {
       return;
     }
 
@@ -27,10 +26,10 @@ export class CreateComponent implements OnInit {
     this.myDate = new Date(form.value.date);
     console.log(this.myDate);
 
-    this.movieService.AddMovieInformation(form.value.title,
+    this.bookService.AddBookInformation(form.value.title,
       form.value.year, form.value.poster).subscribe(
-        ()=>{
-          //do something after out operation has finished
+        () => {
+          // do something after out operation has finished
         }
       );
     console.log(form.value);
