@@ -27,7 +27,7 @@ export class CreateComponent implements OnInit {
     console.log(this.myDate);
 
     this.bookService.AddBookInformation(form.value.title,
-      form.value.year, form.value.poster).subscribe(
+      form.value.year, form.value.code).subscribe(
         () => {
           // do something after out operation has finished
         }

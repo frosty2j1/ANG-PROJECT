@@ -25,7 +25,7 @@ book: any = [];
   onEditBook(form: NgForm) {
     console.log(form.value.title);
     this.bookService.UpdateBook(this.book._id, form.value.title,
-      form.value.year, form.value.poster).subscribe();
+      form.value.year, form.value.code).subscribe();
 
   }
 }

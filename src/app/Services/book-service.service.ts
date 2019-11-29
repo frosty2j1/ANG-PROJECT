@@ -14,8 +14,8 @@ export class BookServiceService {
     return this.http.get('http://localhost:4000/api/books');
   }
 
-  AddBookInformation(title: string, year: string, poster: string): Observable<any> {
-    const book: Book = {title:title, year:year, poster:poster};
+  AddBookInformation(title: string, year: string, code: string): Observable<any> {
+    const book: Book = {title:title, year:year, code:code};
     return this.http.post('http://localhost:4000/api/books', book);
   }
 
@@ -27,8 +27,8 @@ export class BookServiceService {
     return this.http.get('http://localhost:4000/api/books/' + id);
   }
 
-  UpdateBook(id: String,title: string, year: string, poster: string): Observable<any> {
-    const book: Book = {title:title, year:year, poster:poster};
+  UpdateBook(id: String,title: string, year: string, code: string): Observable<any> {
+    const book: Book = {title:title, year:year, code:code};
     console.log('Edit' + id);
     return this.http.put('http://localhost:4000/api/books/' + id, book);
   }
